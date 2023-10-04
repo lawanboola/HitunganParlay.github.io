@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id" >
+
+
+<!-- Mirrored from 194.233.86.221/parlay/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Oct 2023 17:52:27 GMT -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+  <title>KALKULATOR PARLAY</title>
+  <meta name="description" content="Spbo365 menyajikan free widget kalkulator parlay live skor bola spbo, hasil skor, klasemen terbaru, jadwal pertandingan paling update, lengkap dan akurat.">
+  <meta name="keywords" content="iframe bola, freemap, free livescore, sepakbola, basket, bisbol, soccer, basketball, baseball, widget, feed, free iframe, live skor, livescore, skor terkini, skor hari ini, skor terbaru, skor sekarang, spbo365, spbo, unogoal, nowgoal, goaloo">
+<meta name="robots" content="index, follow">
+<meta name="author" content="spbo365" />
+<meta name="copyright" content="Spbo365"/>
+<meta name="geo.placename" content="Indonesia" />
+<meta http-equiv="content-language" content="id">
+<meta name="geo.region" content="indonesia" />
+<meta name="viewport" content="width=device-width" />
+<link rel="shortcut icon" href="../images/favicon.png"/>
+  <link rel='stylesheet' href='C:\Users\USER\Desktop\PARLAY\parlay\bootstrap.min.css'>
+  <link rel="shortcut icon" href="../images/favicon.png"/>
+</head>
+
+<body>
+
+  <main class="container">
+  
+    <form id="app" class="form-vertical">
+  
+        <h1>
+            Kalkulator Parlay {{ totalbet }} Partai
+        </h1>
+        <hr>
+        <div class=" row">
+            <div class="form-group col-xs-3">
+                <button type="button" v-on:click="addNewParlay" class="btn btn-block btn-success">
+                    Tambah
+                </button>
+            </div>
+
+              <div class="form-group col-xs-3">
+                    <label>Nilai Bet</label>
+                    <input type="number" name="nilaibet" v-model="nilaibet" class="form-control" :value="nilaibet" @change="oddstotal()" min=1 max=10000000>
+              </div>
+              <div class="form-group col-xs-3">
+                    <label>Hasil Odds</label>
+                    <div class="form-control btn-info"><b>{{totalodds}}</b> </div>
+               </div>
+               <div class="form-group col-xs-3">
+                    <label>Hasil Akhir</label>
+                    <div class="form-control btn-warning"><b>{{totalc}}</b></div>       
+              </div>
+              
+              
+            
+        </div>
+        <div v-for="(parlay, index) in parlays">
+            <div class="form-group row">
+                <div class="col-xs-3">
+                    <label>&nbsp;</label>
+                    <button type="button" v-on:click="removeParlay(index)" class="btn btn-block btn-danger">Hapus</button>
+                </div>
+                <div class="form-group col-xs-3">
+                    <label>Odds {{ index + 1 }}</label>
+                    <input @change="oddstotal()" v-model="parlay.odds" type="number"
+                           name="parlays[][odds]" class="form-control">
+                </div>
+                <div class="form-group col-xs-6">
+                    <label>Hasil Partai {{ index + 1 }}</label>
+                    <section>
+                        <input type="radio" @change="oddstotal()" v-model="parlay.hasil" value="1"> Menang Full &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="radio" @change="oddstotal()" v-model="parlay.hasil" value="0.5"> Menang Setengah &nbsp; &nbsp; &nbsp; &nbsp; 
+                        <input type="radio" @change="oddstotal()" v-model="parlay.hasil" value="-0.5"> Kalah Setengah &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <input type="radio" @change="oddstotal()" v-model="parlay.hasil" value="0"> Seri
+                        <br/>
+                        <span>Hasil Odds: {{ parlay.oddsx }}</span>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <hr>
+            <div class="row">
+                <div class="col-xs-6">
+                    <b> Catatan:</b><br>
+                    Jika menang full, hitungannya akan menjadi sama dengan Odds<br>
+                    Jika menang setengah, hitungannya (Odds-1)/2 +1<br>
+                    Jika kalah setengah, hitungannya menjadi tetap 0.5<br>
+                    Jika seri, hitungannya akan menjadi tetap 1 atau tidak dihitung
+                </div>
+                <div class="col-xs-6">
+                    <b>Rumus Mix Parlay</b><br>
+                    (Hasil Perkalian Odds x Jumlah Betting) - Jumlah Betting.<br>
+                    <i>Jika hasil minus, Anda kalah sejumlah hasil yang dikeluarkan.<br>
+                    Jika hasil plus, Anda menang sejumlah hasil yang dikeluarkan.</i>
+                </div>
+            </div>
+        <hr>
+        <!-- <pre>{{ $data }}</pre> -->
+    </form>
+</main>
+<script  src="js/vue.min.js"></script>
+
+<p style="color:#999; text-align:center">Copyright BEDEBOLA © 2023 Powered By <a href="https://5.189.167.221/" target="_blank" title="Live Score bola">Spbo365</a> All Rights Reserved.</p>
+</body>
+
+<!-- Mirrored from 194.233.86.221/parlay/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 03 Oct 2023 17:52:29 GMT -->
+</html>
